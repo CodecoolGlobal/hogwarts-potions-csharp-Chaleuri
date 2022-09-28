@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
-    <UserSecretsId>8a3251d7-2c0b-4edf-adc0-dc16117e36cd</UserSecretsId>
+    <UserSecretsId>7e0f7d9f-b609-46b9-8406-fdb182d52fde</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
