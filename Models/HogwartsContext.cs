@@ -73,6 +73,11 @@ namespace HogwartsPotions.Models
                 .ToListAsync();
         }
 
+        public Task<Student> GetStudentById(long studentId)
+        {
+            return Students.FirstAsync(student => student.ID.Equals(studentId)) ?? null;
+        }
+
         public Task<List<Potion>> GetAllPotions()
         {
             return Potions.ToListAsync();
