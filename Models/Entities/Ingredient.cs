@@ -9,6 +9,7 @@ public class Ingredient
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public long ID { get; set; }
     public string Name { get; set; }
+    public string Description { get; set; }
 
     [JsonIgnore]
     public HashSet<Recipe> Recipes { get; set; } = new();
