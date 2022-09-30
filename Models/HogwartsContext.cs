@@ -102,5 +102,39 @@ namespace HogwartsPotions.Models
         {
             throw new NotImplementedException();
         }
+
+        public async Task<Recipe> GetRecipe(Potion potion)
+        {
+            List<Ingredient> ingredients = potion.Ingredients;
+            Recipe returnRecipe;
+            foreach (Recipe recipe in Recipes)
+            {
+                if (recipe.Ingredients.All(ingredients.Contains))
+                {
+                    potion.BrewingStatus = BrewingStatus.Replica;
+                    returnRecipe = new Recipe
+                    {
+                        Ingredients = ingredients,
+                        Student = potion.BrewerStudent,
+                        Name = $"{potion.BrewerStudent.Name}'s discovery #{potion.DiscoveryCount}"
+                    };
+                    await SaveChangesAsync();
+                    return returnRecipe;
+                }
+            }
+
+            if (potion.Ingredients.Count < 5)
+            {
+                potion.BrewingStatus = BrewingStatus.Brew;
+                returnRecipe = new Recipe
+                {
+                    Ingredients = ingredients,
+                    Student = potion.BrewerStudent,
+                    Name = $"{potion.BrewerStudent.Name}'s discovery #{potion.DiscoveryCount}"
+                };
+            }
+
+
+        }
     }
 }
