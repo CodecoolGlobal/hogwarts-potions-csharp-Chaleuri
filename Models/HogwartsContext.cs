@@ -72,5 +72,10 @@ namespace HogwartsPotions.Models
                     room.Residents.Any(student => student.PetType != PetType.Cat || student.PetType != PetType.Owl))
                 .ToListAsync();
         }
+
+        public Task<List<Potion>> GetAllPotions()
+        {
+            return Potions.ToListAsync();
+        }
     }
 }
