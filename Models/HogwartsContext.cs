@@ -83,9 +83,43 @@ namespace HogwartsPotions.Models
             return Potions.ToListAsync();
         }
 
-        public Task<Potion> BrewPotion()
+        public async Task<Potion> BrewPotion(long studentId, Potion newPotion)
         {
-            throw new NotImplementedException();
+            Student? brewStudent = await this.GetStudentById(studentId);
+            if (brewStudent == null)
+            {
+                return null;
+            }
+            else
+            {
+                newPotion.BrewerStudent = brewStudent;
+                foreach (Ingredient newPotionIngredient in newPotion.Ingredients)
+                {
+                    if (!Ingredients.Any(ingredient => ingredient.Name.Equals(newPotionIngredient.Name)))
+                    {
+                        Ingredients.Add(newPotionIngredient);
+                    }
+                }
+
+                if (newPotion.Ingredients.Count == 5)
+                {
+                    if (Recipes.Any(recipe => recipe.Ingredients.Any(newPotion.Ingredients.Contains)))
+                    {
+                        newPotion.BrewingStatus = BrewingStatus.Replica;
+                    }
+                    else
+                    {
+                        newPotion.BrewingStatus = BrewingStatus.Discovery;
+                        var newRecipe = new Recipe { Ingredients = newPotion.Ingredients, Student = newPotion.BrewerStudent, Name = $"{newPotion.BrewerStudent}'s discovery"};
+                        Recipes.Add(newRecipe);
+                        newPotion.Recipe = newRecipe;
+                    }
+                }
+
+                await Potions.AddAsync(newPotion);
+                await SaveChangesAsync();
+                return newPotion;
+            }
         }
 
         public Task<List<Potion>> GetAllPotionsOfStudent()
