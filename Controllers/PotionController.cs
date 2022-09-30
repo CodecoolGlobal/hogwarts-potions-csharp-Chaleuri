@@ -23,10 +23,10 @@ namespace HogwartsPotions.Controllers
             return await _context.GetAllPotions();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> BrewPotion()
+        [HttpPost("")]
+        public async Task<IActionResult> BrewPotion([FromQuery] long studentId, [FromBody] Potion newPotion)
         {
-            return await _context.BrewPotion();
+            return await _context.BrewPotion(studentId, newPotion);
         }
     }
 }
