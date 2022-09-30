@@ -122,9 +122,10 @@ namespace HogwartsPotions.Models
             }
         }
 
-        public Task<List<Potion>> GetAllPotionsOfStudent()
+        public async Task<List<Potion>> GetAllPotionsOfStudent(long studentId)
         {
-            throw new NotImplementedException();
+            Student student = await this.GetStudentById(studentId);
+            return await Potions.Where(potion => potion.BrewerStudent.Equals(student)).ToListAsync();
         }
 
         public async Task<Potion> AddIngredientToPotion()
