@@ -10,7 +10,7 @@ public class Potion
     public long ID { get; set; }
     public string Name { get; set; }
 
-    public List<Ingredient> Ingredients { get; set; } = new List<Ingredient> {new Ingredient {Name = "", Description = ""}};
+    public List<Ingredient> Ingredients { get; set; }
     public Student BrewerStudent { get; set; }
     public Recipe Recipe { get; set; }
     public BrewingStatus BrewingStatus { get; set; }
