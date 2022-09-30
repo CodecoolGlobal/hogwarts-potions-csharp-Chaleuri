@@ -26,6 +26,10 @@ namespace HogwartsPotions.Models
         {
             modelBuilder.Entity<Student>().ToTable("students");
             modelBuilder.Entity<Room>().ToTable("rooms");
+
+            modelBuilder.Entity<Ingredient>().ToTable("ingredients");
+            modelBuilder.Entity<Recipe>().ToTable("recipes");
+            modelBuilder.Entity<Potion>().ToTable("potions");
         }
 
         public async Task AddRoom(Room room)
