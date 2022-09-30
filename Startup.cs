@@ -1,3 +1,4 @@
+using System;
 using HogwartsPotions.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,8 +21,12 @@ namespace HogwartsPotions
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddDbContext<HogwartsContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            {
+                options.UseNpgsql(Configuration["ConnectionString"] ??
+                                  throw new InvalidOperationException("Connection string not found!"));
+            });
 
             services.AddControllersWithViews();
         }
