@@ -77,5 +77,25 @@ namespace HogwartsPotions.Models
         {
             return Potions.ToListAsync();
         }
+
+        public Task<Potion> BrewPotion()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Potion>> GetAllPotionsOfStudent()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<Potion> AddIngredientToPotion()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Ingredient> GetIngredientlistByName(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
