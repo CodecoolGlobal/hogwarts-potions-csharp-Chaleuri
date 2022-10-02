@@ -23,7 +23,7 @@ namespace HogwartsPotions.Controllers
             return await _context.GetAllPotions();
         }
 
-        [HttpPost("")]
+        [HttpPost]
         public async Task<IActionResult> BrewPotion([FromQuery] long studentId, [FromBody] Potion newPotion)
         {
             await _context.BrewPotion(studentId, newPotion);
